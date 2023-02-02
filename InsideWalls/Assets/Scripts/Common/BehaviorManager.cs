@@ -11,15 +11,10 @@ public abstract class BehaviorManager<TDelegate, TContext> : MonoBehaviour
 	where TContext : BehaviorContext, new()
 {
 	/// <summary>
-	/// Editor-visible Behavior Context. Allows designers to modify base values in the editor.
-	/// </summary>
-	[SerializeField, Tooltip("Behavior Context passed to managed Behavior Delegates.")]
-	private TContext _context = null;
-
-	/// <summary>
 	/// Behavior Context passed to managed Behavior Delegates.
 	/// </summary>
-	public TContext Context => _context;
+	[SerializeField, Tooltip("Behavior Context passed to managed Behavior Delegates.")]
+	public TContext Context = null;
 
 	/// <summary>
 	/// List of all managed Behavior Delegates sorted by their order values.

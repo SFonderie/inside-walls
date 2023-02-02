@@ -5,8 +5,9 @@ using UnityEngine.InputSystem;
 /// </summary>
 public abstract class PlayerDelegate : BehaviorDelegate<PlayerContext>
 {
-	public const int CAMERA_ORDER = 0;
-	public const int MOVEMENT_ORDER = 1;
+	public const int MOVEMENT_ORDER = 0;
+	public const int CAMERA_ORDER = 1;
+	public const int ANIMATE_ORDER = 100;
 
 	/// <summary>
 	/// Invoked once per Unity Input event.

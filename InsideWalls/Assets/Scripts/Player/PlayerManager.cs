@@ -16,6 +16,9 @@ public class PlayerManager : BehaviorManager<PlayerDelegate, PlayerContext>
 	{
 		base.Start();
 
+		Context.CameraTarget = transform;
+		Pause();
+
 		if (_input)
 		{
 			_input.onActionTriggered += HandleInput;
@@ -28,9 +31,33 @@ public class PlayerManager : BehaviorManager<PlayerDelegate, PlayerContext>
 	/// <param name="context">Input event context struct.</param>
 	public void HandleInput(InputAction.CallbackContext context)
 	{
+		if (context.action.name.Equals("Pause"))
+		{
+			if (Context.Paused)
+			{
+				Unpause();
+			}
+			else
+			{
+				Pause();
+			}
+		}
+
 		foreach (PlayerDelegate script in Delegates)
 		{
 			script.HandleInput(context);
 		}
+	}
+
+	public void Pause()
+	{
+		Time.timeScale = 0;
+		Context.Paused = true;
+	}
+
+	public void Unpause()
+	{
+		Time.timeScale = 1;
+		Context.Paused = false;
 	}
 }
